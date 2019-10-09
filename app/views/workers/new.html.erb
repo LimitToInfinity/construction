@@ -1,0 +1,17 @@
+<%= form_for(@worker) do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    
+    <h3>Site Fields:</h3>
+    
+    <%= f.collection_check_boxes :site_ids, Site.all, :id, :location %> <br><br>
+    
+    <%= f.fields_for :sites do |ff| %>
+        <%= ff.label :location %>
+        <%= ff.text_field :location %>
+        <%= ff.label "Is this site hazardous?" %>
+        <%= ff.check_box :hazardous %>
+    <% end %>
+    
+    <%= f.submit %>
+<% end %>
